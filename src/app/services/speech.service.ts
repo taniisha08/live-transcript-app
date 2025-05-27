@@ -36,6 +36,7 @@ export class SpeechService {
 
     // register speechRecognition event
     this.recognition.onresult = (event: any) => {
+     
       this.ngZone.run(() => {
         let interim = '';
         for (let i = event.resultIndex; i < event.results.length; i++) {
@@ -44,6 +45,7 @@ export class SpeechService {
             const current = this.liveSentenceSubject.getValue();
             this.liveSentenceSubject.next(current + result[0].transcript + ' ');
             console.log('recognition onresult => ', result[0].transcript);
+            console.log('started speaking', this.getCurrentTimestamp());
           } else {
             interim += result[0].transcript;
           }
@@ -80,6 +82,7 @@ export class SpeechService {
   
       const liveSentence = this.liveSentenceSubject.getValue().trim();
       if (liveSentence) {
+        console.log('stopped speaking', this.getCurrentTimestamp());
         const currentTranscript = this.transcriptSubject.getValue();
         const endTime = this.getCurrentTimestamp();
         currentTranscript.push({

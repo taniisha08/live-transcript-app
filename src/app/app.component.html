@@ -37,26 +37,32 @@
 
 <!-- src/app/app.component.html -->
 <div style="text-align:center">
-  <h2>🎙️ Live Transcript</h2>
+  <h1> Live Transcript</h1>
   
-  <div class="row"style="display:flex">
-    <button (click)="startListening()">Start Listening</button>
-    <button (click)="stopListening()">Stop Listening</button>
-  </div>
+  <!-- <button (click)="stopListening()">Stop Listening</button> -->
 
-  <div class="status">
+  <!-- <div class="status">
     {{ isSpeaking ? 'Speaking...' : 'Not Speaking' }}
-  </div>
+  </div> -->
+
+
 
   <div class="live-text">
     <strong>Current:</strong> {{ liveSentence }}
   </div>
+  <h2>🎙️ Mic Sensitivity</h2>
+
+  <div class="audio-bar-container">
+      <!-- bar form -->
+    <div class="audio-bar" [style.width.%]="micVolume"></div>
+  </div>
+
 
   <div class="transcript">
     <h3>Transcript</h3>
     <div class="entry" *ngFor="let item of transcript">
       <strong>{{ item.speaker }}</strong>
-      <span class="timestamp">[{{ item.startTime }} → {{ item.endTime }}]</span>: {{ item.sentence }}
+      <span class="timestamp"> [ {{ item.startTime }} → {{ item.endTime }}  ]</span> : {{ item.sentence }}
     </div>
   </div>
 </div>
