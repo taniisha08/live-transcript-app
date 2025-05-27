@@ -1,3 +1,4 @@
+/* src/app/app.component.css */
 body {
     font-family: Arial, sans-serif;
     background: #f9f9f9;
@@ -25,7 +26,7 @@ body {
     background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
   .entry {
@@ -37,23 +38,13 @@ body {
     font-size: 0.9em;
   }
   
-  .button-row {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .button-row button {
+  button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
-    border: none;
+    background: #007bff;
     color: white;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .button-row button:hover {
-    background-color: #0056b3;
+    margin: 5px;
   }

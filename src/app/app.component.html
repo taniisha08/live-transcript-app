@@ -35,28 +35,32 @@
 
 <div class="content" role="main">
 
-  <div class="container">
-    <h2>🎙️ Live Transcript</h2>
-    <div class="button-row">
-      <button (click)="startListening()">Start Listening</button>
-      <button (click)="stopListening()">Stop Listening</button>
-    </div>
-    <div class="status">
-      {{ isSpeaking ? 'Speaking...' : 'Not Speaking' }}
-    </div>
+<!-- src/app/app.component.html -->
+<div style="text-align:center">
+  <h2>🎙️ Live Transcript</h2>
   
-    <div class="live-text">
-      <strong>Current:</strong> {{ liveSentence }}
-    </div>
-  
-    <div class="transcript">
-      <h3>Transcript</h3>
-      <div class="entry" *ngFor="let item of transcript">
-        <strong>{{ item.speaker }}</strong>
-        <span class="timestamp">[{{ item.timestamp }}]</span>: {{ item.sentence }}
-      </div>
+  <div class="row"style="display:flex">
+    <button (click)="startListening()">Start Listening</button>
+    <button (click)="stopListening()">Stop Listening</button>
+  </div>
+
+  <div class="status">
+    {{ isSpeaking ? 'Speaking...' : 'Not Speaking' }}
+  </div>
+
+  <div class="live-text">
+    <strong>Current:</strong> {{ liveSentence }}
+  </div>
+
+  <div class="transcript">
+    <h3>Transcript</h3>
+    <div class="entry" *ngFor="let item of transcript">
+      <strong>{{ item.speaker }}</strong>
+      <span class="timestamp">[{{ item.startTime }} → {{ item.endTime }}]</span>: {{ item.sentence }}
     </div>
   </div>
+</div>
+
 
 </div>
 
