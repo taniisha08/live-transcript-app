@@ -9,12 +9,9 @@ export class SpeechService {
   private recognition: any;
   private silenceTimer: any;
   private sentenceStartTime: string | null = null;
-  private readonly SILENCE_TIMEOUT = 1500;
+  private readonly SILENCE_TIMEOUT = 2000;
   private isSpeaking = false;
-  private transcriptSubject = new BehaviorSubject<
-  { speaker: string; sentence: string; startTime: string; endTime: string }[]
->([]);
-  // private transcriptSubject = new BehaviorSubject<{ speaker: string; sentence: string; timestamp: string }[]>([]);
+  private transcriptSubject = new BehaviorSubject<{ speaker: string; sentence: string; startTime: string; endTime: string }[]>([]);
   private liveSentenceSubject = new BehaviorSubject<string>('');
   private speakingStatusSubject = new BehaviorSubject<boolean>(false);
 
@@ -28,7 +25,7 @@ export class SpeechService {
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-      alert('Web Speech API not supported in this browser');
+      console.log('Web Speech API not supported in this browser');
       return;
     }
 
@@ -37,6 +34,7 @@ export class SpeechService {
     this.recognition.interimResults = true;
     this.recognition.lang = 'en-IN';
 
+    // register speechRecognition event
     this.recognition.onresult = (event: any) => {
       this.ngZone.run(() => {
         let interim = '';
@@ -45,6 +43,7 @@ export class SpeechService {
           if (result.isFinal) {
             const current = this.liveSentenceSubject.getValue();
             this.liveSentenceSubject.next(current + result[0].transcript + ' ');
+            console.log('recognition onresult => ', result[0].transcript);
           } else {
             interim += result[0].transcript;
           }
@@ -59,11 +58,12 @@ export class SpeechService {
     };
 
     this.recognition.onerror = (event: any) => {
-      console.error('Speech recognition error:', event);
+      console.error('Speech recognition onerror:', event);
     };
 
     this.recognition.onend = () => {
       if (this.shouldKeepListening) {
+        console.log('recognition onended recognition restarted');
         this.recognition.start();
       }
     };
@@ -103,6 +103,7 @@ export class SpeechService {
   public startListening() {
     if (this.recognition) {
       try {
+        console.log('start listening');
         this.recognition.start();
       } catch (err) {
         console.warn('Recognition already started.');
@@ -111,6 +112,7 @@ export class SpeechService {
   }
 
   public stopListening() {
+    console.log('stop listening');
     this.shouldKeepListening = false;
     this.recognition.stop();
   }
