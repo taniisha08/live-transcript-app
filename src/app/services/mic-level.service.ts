@@ -39,7 +39,7 @@ export class MicLevelService {
       const average = dataArray.reduce((sum, value) => sum + value, 0) / dataArray.length;
 
       // Normalize to 0-100 for UI
-      const normalized = Math.min(100, (average / 80) * 100);
+      const normalized = Math.min(100, (average / 90) * 100);
       this.volumeSubject.next(normalized);
 
       requestAnimationFrame(animate);

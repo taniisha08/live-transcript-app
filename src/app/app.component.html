@@ -1,51 +1,7 @@
-
-
-<style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-
-  .content {
-    display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-
-</style>
-
-
-
 <div class="content" role="main">
 
-<!-- src/app/app.component.html -->
 <div style="text-align:center">
   <h1> Live Transcript</h1>
-  
-  <!-- <button (click)="stopListening()">Stop Listening</button> -->
-
-  <!-- <div class="status">
-    {{ isSpeaking ? 'Speaking...' : 'Not Speaking' }}
-  </div> -->
-
-
 
   <div class="live-text">
     <strong>Current:</strong> {{ liveSentence }}
@@ -53,7 +9,6 @@
   <h2>🎙️ Mic Sensitivity</h2>
 
   <div class="audio-bar-container">
-      <!-- bar form -->
     <div class="audio-bar" [style.width.%]="micVolume"></div>
   </div>
 

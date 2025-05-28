@@ -30,6 +30,7 @@ export class SpeechService {
     }
 
     this.recognition = new SpeechRecognition();
+    console.log(this.recognition);
     this.recognition.continuous = true;
     this.recognition.interimResults = true;
     this.recognition.lang = 'en-IN';
@@ -69,6 +70,8 @@ export class SpeechService {
         this.recognition.start();
       }
     };
+
+
   }
 
   private resetSilenceTimer() {
